@@ -61,6 +61,14 @@
             "required": "false"
         },
         {
+            "name": "stackInitArgs",
+            "type": "string",
+            "label": "Stack Init Args",
+            "defaultValue": "",
+            "helpMarkDown": "Specify the args to be passed to the `pulumi stack init` command. Use space to separate multiple args. Learn more [here](https://www.pulumi.com/docs/reference/cli/pulumi_stack_init/).",
+            "required": "false"
+        },
+        {
             "name": "args",
             "type": "string",
             "label": "Pulumi Args",

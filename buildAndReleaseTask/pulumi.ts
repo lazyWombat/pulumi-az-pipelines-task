@@ -54,8 +54,10 @@ async function selectOrCreateStack(toolPath: string, pulExecOptions: tr.IExecOpt
     }
 
     tl.debug(tl.loc("Debug_CreateStack", pulStack));
-    const stackInitRunner = tl.tool(toolPath);
-    const exitCode = await stackInitRunner.arg(["stack", "init", pulStack!]).exec(pulExecOptions);
+    const stackInitArgs = tl.getDelimitedInput("stackInitArgs", " ");
+    let stackInitRunner = tl.tool(toolPath).arg(["stack", "init", pulStack!]);
+    stackInitRunner = appendArgsToToolCmd(stackInitRunner, stackInitArgs);
+    const exitCode = await stackInitRunner.exec(pulExecOptions);
     if (exitCode !== 0) {
         tl.setResult(tl.TaskResult.Failed, tl.loc("CreateStackFailed", pulStack));
     }
